@@ -1,0 +1,39 @@
+.add_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 40px 20px;
+  margin-top: 20px;
+}
+
+.add_form_input {
+  border: 2px solid white;
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background: none;
+  padding: 10px 5px;
+}
+
+.description {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.add_form_input::placeholder {
+  color: azure;
+}
+
+.add_form_button:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 200, 200, 0.4),
+    rgba(255, 255, 255, 0.4),
+    rgba(125, 125, 125, 0.4)
+  );
+  transition: 0.2s linear;
+  background-position: 100% 100%;
+  box-shadow: 0 0 10px 2px white;
+  cursor: pointer;
+}

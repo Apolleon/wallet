@@ -1,0 +1,6 @@
+.manager {
+  margin-top: 40px;
+  background-color: rgba(200, 200, 200, 0.3);
+  padding: 50px 20px;
+  backdrop-filter: blur(5px);
+}

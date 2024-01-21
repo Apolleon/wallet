@@ -1,0 +1,32 @@
+.statistic_item {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+  margin: 14px auto;
+  width: 100%;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.statistic_item:hover {
+  cursor: pointer;
+  box-shadow: 0 0 7px 4px white;
+}
+
+.summary {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 4px 5px;
+  margin: 30px 0;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.summary_column {
+  margin-right: 0;
+  padding-right: 10px;
+}

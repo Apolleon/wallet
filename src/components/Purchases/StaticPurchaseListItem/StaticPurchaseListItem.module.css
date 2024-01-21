@@ -1,0 +1,73 @@
+.purchase_item {
+  display: flex;
+  margin: 10px 0;
+  min-height: 80px;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: rgba(30, 30, 30, 0.8);
+  color: white;
+}
+
+.item_small_element {
+  flex: 1;
+}
+
+.item_medium_element {
+  flex: 2;
+}
+
+.item_large_element {
+  flex: 3;
+}
+
+.collections_toggle {
+  position: relative;
+  z-index: 100;
+}
+
+#check_collection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#check_collection:hover {
+  box-shadow: 0 0 4px 2px white;
+}
+
+#check_collection p {
+  margin: 0;
+}
+
+#check_collection img {
+  width: 18px;
+  height: 18px;
+}
+
+.selector {
+  display: block;
+  top: calc(100% + 10px);
+  left: 0;
+  position: absolute;
+  cursor: pointer;
+  background-color: rgba(10, 10, 10, 0.9);
+  border: 2px solid white;
+  padding: 10px 5px;
+  width: 100%;
+  color: white;
+  font-size: 16px;
+  z-index: 100;
+}
+
+.selector li {
+  padding: 5px 0;
+}
+
+.selector li:hover {
+  background-color: grey;
+}

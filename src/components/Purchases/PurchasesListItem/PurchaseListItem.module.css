@@ -1,0 +1,32 @@
+.purchase_item {
+  display: flex;
+  margin: 10px 0;
+  min-height: 80px;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: 500;
+  font-size: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.item_small_element {
+  flex: 1;
+}
+
+.item_medium_element {
+  flex: 2;
+}
+
+.item_large_element {
+  flex: 3;
+}
+
+.item_btn {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border-radius: 4px;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+}
