@@ -15,7 +15,7 @@ function* addPurchase(purchase) {
 }
 
 export function* purchasesSaga() {
-  yield takeEvery(UserActions.GetPurchases, getPurchases());
+  yield takeEvery(UserActions.GetPurchases, getPurchases);
 }
 
 export function* addPurchaseSaga() {

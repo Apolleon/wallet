@@ -10,10 +10,12 @@ const reducer = (
   state: State = initialState,
   action: { type: string; payload }
 ) => {
+  console.log(action);
   switch (action.type) {
     case ReduxActions.SetPurchases:
       return { ...state, purchases: action.payload };
     case ReduxActions.SetCollections:
+      console.log(action.payload, "dfsdf");
       return { ...state, collections: action.payload };
     case ReduxActions.DeletePurchase:
       return {
@@ -26,7 +28,7 @@ const reducer = (
       return {
         ...state,
         collections: state.collections.filter(
-          (collection) => collection._id === action.payload
+          (collection) => collection._id !== action.payload
         ),
       };
     case ReduxActions.AddPurchase:

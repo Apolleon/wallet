@@ -20,7 +20,7 @@ const CollectionForm: FC<CollectionFormProps> = ({ props }) => {
   }
 
   function setData() {
-    if ("_id" in collectionValue) {
+    if ("_id" in props) {
       //changeItem(collectionValue);
       // @ts-ignore
       window.electronAPI.editCollection(

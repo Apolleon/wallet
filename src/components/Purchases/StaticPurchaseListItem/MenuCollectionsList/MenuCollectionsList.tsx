@@ -12,6 +12,7 @@ const MenuCollectionsList: FC<MenuCollectionsListProps> = ({
   sortByCollection,
 }) => {
   const collections = useSelector((state: State) => state.collections);
+  console.log(collections);
   return (
     <ul className={styles.selector}>
       <li onClick={(e) => sortByCollection(e)}>Выбери категорию</li>
