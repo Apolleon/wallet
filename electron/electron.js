@@ -3,17 +3,18 @@ const path = require("path");
 const url = require("url");
 const getStatisticValues = require("./helpers/getStatisticValues");
 const Datastore = require("nedb");
+
 const db = {};
-db.purchases = new Datastore("purchases.db");
-db.collections = new Datastore("collections.db");
+db.purchases = new Datastore("./purchases.db");
+db.collections = new Datastore("./collections.db");
+db.collections.loadDatabase();
+db.purchases.loadDatabase();
 
 let mainWindow;
 let loadingwindow = null;
 let statistics = [];
 
 async function createWindow() {
-  await client.connect().catch((e) => console.log(e));
-
   loadingwindow = new BrowserWindow({
     frame: false,
     movable: false,
@@ -42,11 +43,19 @@ async function createWindow() {
     mainWindow.on("closed", function () {
       mainWindow = null;
     });
-  }, 3000);
+  }, 2000);
 
   const initStatistics = async () => {
-    const boughtsInit = await db.purchases.find({});
-    const collectionsInit = await db.collections.find({});
+    const boughtsInit = await new Promise((resolve) =>
+      db.purchases.find({}, (err, docs) => {
+        if (!err) resolve(docs);
+      })
+    );
+    const collectionsInit = await new Promise((resolve) =>
+      db.collections.find({}, (err, docs) => {
+        if (!err) resolve(docs);
+      })
+    );
     statistics = getStatisticValues(collectionsInit, boughtsInit);
   };
 
@@ -76,24 +85,46 @@ async function createWindow() {
   //collections api
 
   ipcMain.on("get-collections", async (event) => {
-    const result = await db.collections.find({});
+    const result = await new Promise((resolve) =>
+      db.collections.find({}, (err, docs) => {
+        if (!err) resolve(docs);
+      })
+    );
     event.reply("all-collections", result);
   });
 
   ipcMain.on("add-collection", async (event, collectionItem) => {
-    await db.collections.insert(collectionItem);
-    const result = await db.collections.find({});
+    console.log(collectionItem);
+    await new Promise((resolve) =>
+      db.collections.insert(collectionItem, (err, doc) => {
+        if (!err) resolve();
+      })
+    );
+    const result = await new Promise((resolve) =>
+      db.collections.find({}, (err, docs) => {
+        if (!err) resolve(docs);
+      })
+    );
+    console.log(result);
     event.reply("all-collections", result);
   });
 
   ipcMain.on("edit-collection", async (event, { oldName, newName }) => {
-    await db.collections.update(
+    db.collections.update(
       { collection: oldName },
       { $set: { collection: newName } },
       { multi: false }
     );
+
+    db.purchases.update(
+      { collectionName: oldName },
+      { $set: { collection: newName } },
+      { multi: true }
+    );
     const result = await db.collections.find({});
+    const purchaseRes = await db.purchases.find({});
     event.reply("all-collections", result);
+    event.reply("all-boughts", purchaseRes);
   });
 
   //statistics api

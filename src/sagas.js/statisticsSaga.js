@@ -9,5 +9,5 @@ function* getStatistics() {
 }
 
 export function* statisticsSaga() {
-  takeEvery(UserActions.GetStatistics, getStatistics());
+  takeEvery(UserActions.GetStatistics, getStatistics);
 }

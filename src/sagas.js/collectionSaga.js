@@ -3,12 +3,25 @@ import { ReduxActions, UserActions } from "../types.ts";
 
 function* getCollections() {
   yield window.electronAPI.getAllCollections();
-  const data = yield window.electronAPI.handleCollections(
-    (event, value) => value
+  yield window.electronAPI.handleCollections((event, value) =>
+    put({ type: ReduxActions.SetCollections, payload: value })
   );
-  yield put({ type: ReduxActions.SetCollections, payload: data });
+}
+
+function* editCollection(action) {
+  yield window.electronAPI.editCollection(action.payload);
+  yield window.electronAPI.handleCollections((event, value) =>
+    put({ type: ReduxActions.SetCollections, payload: value })
+  );
+  yield window.electronAPI.handleCounter((event, value) =>
+    put({ type: ReduxActions.SetPurchases, payload: value })
+  );
 }
 
 export function* collectionsSaga() {
-  yield takeEvery(UserActions.GetCollections, getCollections());
+  yield takeEvery(UserActions.GetCollections, getCollections);
+}
+
+export function* editCollectionSaga() {
+  yield takeEvery(UserActions.ChangeCollection, editCollection);
 }

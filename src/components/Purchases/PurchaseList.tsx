@@ -15,9 +15,9 @@ const PurchaseList: FC = () => {
   const [filteredItems, setFilteredItems] = useState<PurchaseItemType[]>([]);
 
   useEffect(() => {
-    // dispatch({ type: UserActions.GetCollections });
-    // dispatch({ type: UserActions.GetPurchases });
-    //dispatch({ type: UserActions.GetStatistics });
+    dispatch({ type: UserActions.GetCollections });
+    dispatch({ type: UserActions.GetPurchases });
+    dispatch({ type: UserActions.GetStatistics });
   }, []);
 
   useEffect(() => {

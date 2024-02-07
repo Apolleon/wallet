@@ -3,7 +3,7 @@ export interface PurchaseItemType {
   price: number;
   description: string;
   month: number;
-  date: number;
+  date: string;
   filterDate: number;
   _id: string;
 }
@@ -30,6 +30,7 @@ export enum ReduxActions {
   DeletePurchase = "DELETE_PURCHASE",
   AddPurchase = "ADD_PURCHASE",
   SetStatistics = "SET_STATISTICS",
+  EditCollection = "EDIT_COLLECTION",
 }
 
 export enum UserActions {
@@ -39,4 +40,5 @@ export enum UserActions {
   RemovePurchase = "REMOVE_PURCHASE",
   NewPurchase = "NEW_PURCHASE",
   GetStatistics = "GET_STATISTICS",
+  ChangeCollection = "CHANGE_COLLECTION",
 }
