@@ -5,8 +5,8 @@ const getStatisticValues = require("./helpers/getStatisticValues");
 const Datastore = require("nedb");
 
 const db = {};
-db.purchases = new Datastore("./purchases.db");
-db.collections = new Datastore("./collections.db");
+db.purchases = new Datastore("purchases.db");
+db.collections = new Datastore("collections.db");
 db.collections.loadDatabase();
 db.purchases.loadDatabase();
 
@@ -21,7 +21,7 @@ async function createWindow() {
     transparent: true,
   });
 
-  loadingwindow.loadFile("./public/loading.html");
+  loadingwindow.loadFile("../public/loading.html");
   loadingwindow.show();
   setTimeout(() => {
     const startUrl =
@@ -46,16 +46,17 @@ async function createWindow() {
   }, 2000);
 
   const initStatistics = async () => {
-    const boughtsInit = await new Promise((resolve) =>
+    const boughtsInit = await new Promise((resolve) => {
       db.purchases.find({}, (err, docs) => {
         if (!err) resolve(docs);
-      })
-    );
-    const collectionsInit = await new Promise((resolve) =>
+      });
+    });
+    const collectionsInit = await new Promise((resolve) => {
       db.collections.find({}, (err, docs) => {
         if (!err) resolve(docs);
-      })
-    );
+      });
+    });
+
     statistics = getStatisticValues(collectionsInit, boughtsInit);
   };
 
@@ -63,15 +64,16 @@ async function createWindow() {
 
   //Purchases Api
 
-  ipcMain.on("get-boughts", async (event) => {
-    const result = await db.boughtItems.find({});
-    event.reply("all-boughts", result);
+  ipcMain.on("get-boughts", (event) => {
+    db.purchases.find({}, (err, docs) => {
+      if (!err) event.reply("all-boughts", docs);
+    });
   });
 
   ipcMain.on("add-bought", async (event, boughtItem) => {
-    await db.boughtItems.insert(boughtItem);
+    await db.purchases.insert(boughtItem);
     statistics = initStatistics();
-    const result = await db.boughtItems.find({});
+    const result = await db.purchases.find({});
     event.reply("all-boughts", result);
   });
 
@@ -84,28 +86,19 @@ async function createWindow() {
 
   //collections api
 
-  ipcMain.on("get-collections", async (event) => {
-    const result = await new Promise((resolve) =>
-      db.collections.find({}, (err, docs) => {
-        if (!err) resolve(docs);
-      })
-    );
-    event.reply("all-collections", result);
+  ipcMain.on("get-collections", (event) => {
+    db.collections.find({}, (err, docs) => {
+      if (!err) event.reply("all-collections", docs);
+    });
   });
 
   ipcMain.on("add-collection", async (event, collectionItem) => {
-    console.log(collectionItem);
-    await new Promise((resolve) =>
-      db.collections.insert(collectionItem, (err, doc) => {
-        if (!err) resolve();
-      })
-    );
-    const result = await new Promise((resolve) =>
-      db.collections.find({}, (err, docs) => {
-        if (!err) resolve(docs);
-      })
-    );
-    console.log(result);
+    db.collections.insert(collectionItem, (err, docs) => {
+      if (!err) return docs;
+    });
+    const result = db.collections.find({}, (err, docs) => {
+      if (!err) return docs;
+    });
     event.reply("all-collections", result);
   });
 

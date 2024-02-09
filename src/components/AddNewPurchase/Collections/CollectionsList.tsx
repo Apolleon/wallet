@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import editbtn from "../../img/edit-icon.gif";
-// import deletebtn from "../../img/delete-icon.gif";
+import editbtn from "../../../img/delete-icon.gif";
+import deletebtn from "../../../img/delete-icon.gif";
 import CollectionForm from "./CollectionForm.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { CollectionItemType, State, UserActions } from "../../../types.ts";
@@ -33,16 +33,10 @@ const CollectionsList = () => {
                   onClick={() => editCollection(collection)}
                   style={{ marginRight: "30px" }}
                 >
-                  <img
-                    alt={"../../img/edit-icon.gif"}
-                    src={"../../img/edit-icon.gif"}
-                  />
+                  <img alt={"../../img/edit-icon.gif"} src={editbtn} />
                 </button>
                 <button onClick={() => handleDelete(collection._id)}>
-                  <img
-                    alt={"../../img/delete-icon.gif"}
-                    src={"../../img/delete-icon.gif"}
-                  />
+                  <img alt={"../../img/delete-icon.gif"} src={deletebtn} />
                 </button>
               </div>
             </div>

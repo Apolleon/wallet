@@ -8,7 +8,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   addBoughtItem: (boughtItem) => ipcRenderer.send("add-bought", boughtItem),
   deleteBoughtItem: (boughtItemId) =>
     ipcRenderer.send("delete-bought", boughtItemId),
-  handleCounter: (callback) => ipcRenderer.on("all-boughts", callback),
+  handleBoughts: (callback) => ipcRenderer.on("all-boughts", callback),
   getAllCollections: () => ipcRenderer.send("get-collections"),
   editCollection: (oldName, collectionName) =>
     ipcRenderer.send("edit-collection", oldName, collectionName),

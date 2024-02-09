@@ -27,21 +27,25 @@ const PurchasesListItem: FC<ListItemProps> = ({ item, index }) => {
   };
 
   return (
-    <div className={getColumnClass(index)}>
-      <div className={styles.purchase_item}>
-        <div className={styles.item_small_element}>{item.date}</div>
-        <div className={styles.item_large_element}>{item.description}</div>
-        <div className={styles.item_medium_element}>{item.collectionName}</div>
-        <div className={styles.item_small_element}>{item.price + " р"}</div>
-        <div>
-          <button
-            onClick={() => {
-              handleDelete(item._id);
-            }}
-            className={`${styles.item_btn} ${getButtonClass(index)}`}
-          >
-            X
-          </button>
+    <div className="some-list">
+      <div className={getColumnClass(index)}>
+        <div className={styles.purchase_item}>
+          <div className={styles.item_small_element}>{item.date}</div>
+          <div className={styles.item_large_element}>{item.description}</div>
+          <div className={styles.item_medium_element}>
+            {item.collectionName}
+          </div>
+          <div className={styles.item_small_element}>{item.price + " р"}</div>
+          <div>
+            <button
+              onClick={() => {
+                handleDelete(item._id);
+              }}
+              className={`${styles.item_btn} ${getButtonClass(index)}`}
+            >
+              X
+            </button>
+          </div>
         </div>
       </div>
     </div>

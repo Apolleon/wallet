@@ -4,8 +4,8 @@ import { createMonthData } from "../helpers/statisticsPage/createMonthData";
 import { useSelector } from "react-redux";
 import { State } from "../../types";
 import styles from "./Statistics.module.css";
-import { getStatisticValues } from "../helpers/statisticsPage/getStatisticValues.js";
 import VerticalBar from "../Diagrams.tsx";
+import Layout from "../Layout/Layout.tsx";
 
 const showDiagram = () => {};
 
@@ -38,11 +38,11 @@ const Statistics: FC = () => {
   const statisticsData = useSelector((state: State) => state.statisticsData);
 
   return (
-    <div className="container">
+    <Layout>
       <SummaryBuys />
       {createMonthData(purchases).map((month) => calculateMonthValue(month))}
       <VerticalBar item={dataForBar(statisticsData)} />
-    </div>
+    </Layout>
   );
 };
 export default Statistics;

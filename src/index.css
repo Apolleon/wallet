@@ -29,7 +29,12 @@ body {
 
 html,
 body {
+  height: 100%;
   max-height: 100vh;
+}
+
+#root {
+  height: 100%;
 }
 
 input,
@@ -65,7 +70,7 @@ select,
   max-height: 100%;
   overflow: auto;
   color: white;
-  flex-grow: 3;
+  flex-grow: 1;
   max-height: 100%;
   overflow: auto;
 }
@@ -175,6 +180,7 @@ select,
   width: 50%;
   height: 45px;
   padding: 5px 10px;
+  align-items: center;
 }
 
 .collection-form input {

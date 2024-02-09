@@ -42,7 +42,6 @@ const CollectionForm: FC<CollectionFormProps> = ({ props }) => {
           name={"collection"}
           onChange={changeValue}
           value={collectionValue.collection}
-          className={"innumber"}
         />
       </div>
       <button type={"button"} onClick={setData}>

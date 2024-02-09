@@ -12,7 +12,7 @@ const App: FC = () => {
   return (
     <>
       <Routes>
-        <Route path={"/"} element={<PurchaseList />} />
+        <Route path={"*"} element={<PurchaseList />} />
         <Route path={"/stats"} element={<Statistics />} />
         {/* <Route path={"diagram"} element={<Diagrams />} /> */}
         <Route path={"manager"} element={<Manager />} />
