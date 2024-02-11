@@ -1,6 +1,6 @@
 import React, { FC, memo } from "react";
 import { useDispatch } from "react-redux";
-import { PurchaseItemType, UserActions } from "../../../types/types.ts";
+import { PurchaseItemType, ReduxActions } from "../../../types/types.ts";
 import styles from "./PurchaseListItem.module.css";
 
 type backColor = "greyback" | undefined;
@@ -23,11 +23,12 @@ const PurchasesListItem: FC<ListItemProps> = ({ item, index }) => {
   const dispatch = useDispatch();
 
   const handleDelete = (id: string): void => {
-    dispatch({ type: UserActions.RemovePurchase, payload: id });
+    window.electronAPI.deleteBoughtItem(id);
+    dispatch({ type: ReduxActions.DeletePurchase, payload: id });
   };
 
   return (
-    <div className="some-list">
+    <div>
       <div className={getColumnClass(index)}>
         <div className={styles.purchase_item}>
           <div className={styles.item_small_element}>{item.date}</div>

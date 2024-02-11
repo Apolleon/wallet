@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { PurchaseItemType, State, UserActions } from "../../../types/types.ts";
+import { PurchaseItemType, State } from "../../../types/types.ts";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./NewData.module.css";
 import InputField from "./InputField.tsx";
@@ -8,7 +8,7 @@ import FormHeader from "../FormHeader.tsx";
 import SelectField from "./SelectField.tsx";
 
 const changeValue =
-  (fn: Function): ((t) => Function) =>
+  (fn: Function): ((t: Event) => Function) =>
   ({ target }: { target: EventTarget }): ((s: string) => void) => {
     return fn((target as HTMLInputElement).value);
   };
@@ -31,7 +31,7 @@ const NewData = () => {
       date: date.toLocaleString(),
       filterDate: Date.now(),
     };
-    dispatch({ type: UserActions.NewPurchase, payload: newPurchase });
+    window.electronAPI.addBoughtItem(newPurchase);
     setPrice("");
     setDescription("");
   }

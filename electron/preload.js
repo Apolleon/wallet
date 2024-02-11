@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   getAllCollections: () => ipcRenderer.send("get-collections"),
   editCollection: (oldName, collectionName) =>
     ipcRenderer.send("edit-collection", oldName, collectionName),
+  deleteCollection: (id) => ipcRenderer.send("delete-collection", id),
   handleCollections: (collections) =>
     ipcRenderer.on("all-collections", collections),
   addCollection: (collection) => ipcRenderer.send("add-collection", collection),

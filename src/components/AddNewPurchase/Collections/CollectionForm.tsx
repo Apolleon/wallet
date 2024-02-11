@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from "react";
-import { CollectionItemType } from "../../../types/types";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { CollectionItemType, ReduxActions } from "../../../types/types";
+import { useDispatch } from "react-redux";
 
 interface CollectionFormProps {
   props: CollectionItemType | {};
@@ -9,26 +10,30 @@ const CollectionForm: FC<CollectionFormProps> = ({ props }) => {
   const [collectionValue, setCollection] = useState({
     collection: "",
   });
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (props) setCollection(props);
-  }, []);
+    if ("_id" in props) setCollection(props);
+  }, [props]);
 
-  function changeValue(e: InputEvent) {
-    if (e.target)
-      setCollection({ collection: (e.target as HTMLInputElement).value });
+  function changeValue(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target) setCollection({ collection: event.target.value });
   }
 
   function setData() {
     if ("_id" in props) {
-      //changeItem(collectionValue);
-      // @ts-ignore
-      window.electronAPI.editCollection(
-        props.collection,
-        collectionValue.collection
-      );
+      dispatch({
+        type: ReduxActions.EditCollection,
+        payload: {
+          ...props,
+          newName: collectionValue.collection,
+        },
+      });
+      window.electronAPI.editCollection({
+        ...props,
+        newName: collectionValue.collection,
+      });
     } else {
-      // @ts-ignore
       window.electronAPI.addCollection(collectionValue);
     }
     setCollection({ collection: "" });

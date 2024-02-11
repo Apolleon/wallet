@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import editbtn from "../../../img/delete-icon.gif";
+import editbtn from "../../../img/edit-icon.gif";
 import deletebtn from "../../../img/delete-icon.gif";
 import CollectionForm from "./CollectionForm.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CollectionItemType,
+  ReduxActions,
   State,
-  UserActions,
 } from "../../../types/types.ts";
 import FormHeader from "../FormHeader.tsx";
 
@@ -20,8 +20,10 @@ const CollectionsList = () => {
     else setInitialData({});
   };
 
-  const handleDelete = (id: string) =>
-    dispatch({ type: UserActions.RemoveCollection, payload: id });
+  const handleDelete = (id: string) => {
+    dispatch({ type: ReduxActions.DeleteCollection, payload: id });
+    window.electronAPI.deleteCollection(id);
+  };
 
   return (
     <div style={{ marginTop: "40px" }}>

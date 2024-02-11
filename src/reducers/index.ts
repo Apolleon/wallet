@@ -22,7 +22,7 @@ const reducer = (
       return {
         ...state,
         purchases: state.purchases.filter(
-          (purchase) => purchase._id === action.payload
+          (purchase) => purchase._id !== action.payload
         ),
       };
 
@@ -34,12 +34,16 @@ const reducer = (
         ),
       };
 
-    case ReduxActions.AddPurchase:
-      return { ...state, purchases: [...state.purchases, action.payload] };
-
-    case ReduxActions.SetStatistics: {
+    case ReduxActions.SetStatistics:
       return { ...state, statisticsData: action.payload };
-    }
+
+    case ReduxActions.EditCollection:
+      return {
+        ...state,
+        collections: state.collections.map((collection) =>
+          collection._id === action.payload._id ? action.payload : collection
+        ),
+      };
 
     default:
       return state;

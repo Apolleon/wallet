@@ -72,16 +72,24 @@ async function createWindow() {
 
   ipcMain.on("add-bought", async (event, boughtItem) => {
     await db.purchases.insert(boughtItem);
-    statistics = initStatistics();
-    const result = await db.purchases.find({});
-    event.reply("all-boughts", result);
+
+    db.purchases.find({}, (err, docs) => {
+      if (!err) {
+        event.reply("all-boughts", docs);
+        statistics = initStatistics();
+      }
+    });
   });
 
-  ipcMain.on("delete-bought", async (event, boughtItemDate) => {
-    await boughtItems.deleteOne({ filterDate: boughtItemDate });
-    const result = await db.boughtItems.find({});
-    statistics = initStatistics();
-    event.reply("all-boughts", result);
+  ipcMain.on("delete-bought", async (event, boughtItemId) => {
+    await db.purchases.remove({ _id: boughtItemId });
+
+    db.purchases.find({}, (err, docs) => {
+      if (!err) {
+        event.reply("all-boughts", docs);
+        statistics = initStatistics();
+      }
+    });
   });
 
   //collections api
@@ -92,32 +100,55 @@ async function createWindow() {
     });
   });
 
-  ipcMain.on("add-collection", async (event, collectionItem) => {
+  ipcMain.on("add-collection", (event, collectionItem) => {
     db.collections.insert(collectionItem, (err, docs) => {
-      if (!err) return docs;
+      if (!err) {
+        db.collections.find({}, (err, docs) => {
+          if (!err) {
+            event.reply("all-collections", docs);
+          }
+        });
+      }
     });
-    const result = db.collections.find({}, (err, docs) => {
-      if (!err) return docs;
-    });
-    event.reply("all-collections", result);
   });
 
-  ipcMain.on("edit-collection", async (event, { oldName, newName }) => {
+  ipcMain.on("delete-collection", (event, id) => {
+    db.collections.remove({ _id: id }, (err, docs) => {
+      if (!err) {
+        db.collections.find({}, (err, docs) => {
+          if (!err) {
+            event.reply("all-collections", docs);
+          }
+        });
+      }
+    });
+  });
+
+  ipcMain.on("edit-collection", (event, { _id, collection, newName }) => {
     db.collections.update(
-      { collection: oldName },
+      { _id: _id },
       { $set: { collection: newName } },
       { multi: false }
     );
 
     db.purchases.update(
-      { collectionName: oldName },
-      { $set: { collection: newName } },
+      { collectionName: collection },
+      { $set: { collectionName: newName } },
       { multi: true }
     );
-    const result = await db.collections.find({});
-    const purchaseRes = await db.purchases.find({});
-    event.reply("all-collections", result);
-    event.reply("all-boughts", purchaseRes);
+
+    db.collections.find({}, (err, docs) => {
+      if (!err) {
+        event.reply("all-collections", docs);
+      }
+    });
+
+    db.purchases.find({}, (err, docs) => {
+      if (!err) {
+        event.reply("all-boughts", docs);
+        statistics = initStatistics();
+      }
+    });
   });
 
   //statistics api

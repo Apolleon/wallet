@@ -32,9 +32,11 @@ const PurchaseList: FC = () => {
     <div className="container main-div">
       <TopNavigation />
       <StaticPurchaseListItem setFilteredItems={setFilteredItems} />
-      {filteredItems.map((i, index) => (
-        <ListItem index={index} key={index} item={i} />
-      ))}
+      <div className="some-list">
+        {filteredItems.map((i, index) => (
+          <ListItem index={index} key={index} item={i} />
+        ))}
+      </div>
     </div>
   );
 };
