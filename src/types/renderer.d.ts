@@ -6,7 +6,7 @@ interface CollectionForEdit extends CollectionItemType {
 
 export interface IElectronAPI {
   getAllStatistics: () => Promise<void>;
-  handleStatistics: (event: Event, statistics) => Promise<void>;
+  handleStatistics: (cb: (event: Event, statistics) => void) => Promise<void>;
   addBoughtItem: (boughtItem: Omit<PurchaseItemType, "_id">) => Promise<void>;
   deleteBoughtItem: (boughtItemId: string) => Promise<void>;
   handleBoughts: (
@@ -20,6 +20,10 @@ export interface IElectronAPI {
   addCollection: (collection: Omit<CollectionItemType, "_id">) => Promise<void>;
   getAllBoughts: () => Promise<void>;
   deleteCollection: (id: string) => Promise<void>;
+  getMonthStatistics: (month: number) => Promise<void>;
+  handleMonthStatistics: (
+    cb: (event: Event, statistics) => void
+  ) => Promise<void>;
 }
 
 declare global {

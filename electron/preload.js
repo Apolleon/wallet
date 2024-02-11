@@ -2,9 +2,6 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
   getAllBoughts: () => ipcRenderer.send("get-boughts"),
-  getAllStatistics: () => ipcRenderer.send("get-statistics"),
-  handleStatistics: (statistics) =>
-    ipcRenderer.on("all-statistics", statistics),
   addBoughtItem: (boughtItem) => ipcRenderer.send("add-bought", boughtItem),
   deleteBoughtItem: (boughtItemId) =>
     ipcRenderer.send("delete-bought", boughtItemId),
@@ -16,4 +13,11 @@ contextBridge.exposeInMainWorld("electronAPI", {
   handleCollections: (collections) =>
     ipcRenderer.on("all-collections", collections),
   addCollection: (collection) => ipcRenderer.send("add-collection", collection),
+  getAllStatistics: () => ipcRenderer.send("get-statistics"),
+  handleStatistics: (statistics) =>
+    ipcRenderer.on("all-statistics", statistics),
+  getMonthStatistics: (month) =>
+    ipcRenderer.send("get-month-statistics", month),
+  handleMonthStatistics: (statistics) =>
+    ipcRenderer.on("month-statistics", statistics),
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../types/types";
 
 ChartJS.register(
   CategoryScale,
@@ -21,18 +23,40 @@ ChartJS.register(
 
 type stat = {
   collection: string;
-  totalPrice: number;
+  monthPrice: number;
 };
 
-const VerticalBar = ({ item }: { item?: stat[] }) => {
+const dataForBar = (data: any) => {
+  const result: Array<{ collection: string; monthPrice: number }> = [];
+  for (let collection in data) {
+    result.push({
+      collection: collection,
+      monthPrice: data[collection].monthPrice,
+    });
+  }
+  return result;
+};
+
+const VerticalBar = () => {
+  const statisticMonth = useSelector((state: State) => state.statisticMonth);
+  const [statistics, setStatistics] = useState([]);
+
+  useEffect(() => {
+    window.electronAPI.getMonthStatistics(statisticMonth);
+    window.electronAPI.handleMonthStatistics((event, statistics) => {
+      const data = dataForBar(statistics);
+      setStatistics(data);
+    });
+  }, [statisticMonth]);
+
   const data = {
-    labels: item?.map((i) => i.collection),
+    labels: statistics.map((i) => i.collection),
     datasets: [
       {
         label: "Потрачено",
-        data: item?.map((i) => i.totalPrice),
-        backgroundColor: item?.map(() => "rgba(250, 250, 250, 0.8)"),
-        borderColor: item?.map(() => "rgba(255, 255, 255, 1)"),
+        data: statistics.map((i) => i.monthPrice),
+        backgroundColor: statistics.map(() => "rgba(250, 250, 250, 0.8)"),
+        borderColor: statistics.map(() => "rgba(255, 255, 255, 1)"),
         borderWidth: 0,
       },
     ],

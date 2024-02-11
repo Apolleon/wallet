@@ -45,7 +45,7 @@ async function createWindow() {
     });
   }, 2000);
 
-  const initStatistics = async () => {
+  const initStatistics = async (month = new Date().getMonth()) => {
     const boughtsInit = await new Promise((resolve) => {
       db.purchases.find({}, (err, docs) => {
         if (!err) resolve(docs);
@@ -57,10 +57,10 @@ async function createWindow() {
       });
     });
 
-    statistics = getStatisticValues(collectionsInit, boughtsInit);
+    return getStatisticValues(collectionsInit, boughtsInit, month);
   };
 
-  initStatistics();
+  statistics = await initStatistics();
 
   //Purchases Api
 
@@ -155,6 +155,11 @@ async function createWindow() {
 
   ipcMain.on("get-statistics", async (event) => {
     event.reply("all-statistics", statistics);
+  });
+
+  ipcMain.on("get-month-statistics", async (event, month) => {
+    const monthStats = await initStatistics(month);
+    event.reply("month-statistics", monthStats);
   });
 }
 

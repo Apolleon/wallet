@@ -21,6 +21,7 @@ export interface State {
   purchases: PurchaseItemType[];
   collections: CollectionItemType[];
   statisticsData: MonthObj;
+  statisticMonth: number;
 }
 
 export enum ReduxActions {
@@ -32,4 +33,5 @@ export enum ReduxActions {
   AddCollection = "ADD_COLLECTION",
   SetStatistics = "SET_STATISTICS",
   EditCollection = "EDIT_COLLECTION",
+  SetStatisticMonth = "SET_STATISTIC_MONTH",
 }

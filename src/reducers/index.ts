@@ -5,6 +5,7 @@ const initialState: State = {
   purchases: [],
   collections: [],
   statisticsData: [],
+  statisticMonth: 0,
 };
 
 const reducer = (
@@ -44,6 +45,9 @@ const reducer = (
           collection._id === action.payload._id ? action.payload : collection
         ),
       };
+
+    case ReduxActions.SetStatisticMonth:
+      return { ...state, statisticMonth: action.payload };
 
     default:
       return state;

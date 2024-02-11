@@ -1,5 +1,8 @@
-const getStatisticValues = (collections, buysItems) => {
-  const thisMonth = new Date().getMonth();
+const getStatisticValues = (
+  collections,
+  buysItems,
+  thisMonth = new Date().getMonth()
+) => {
   let sum = {};
   for (const { collection } of collections) {
     sum[collection] = {

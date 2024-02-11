@@ -8,7 +8,6 @@ import { State } from "../../types/types.ts";
 import { getStatisticValues } from "../helpers/statisticsPage/getStatisticValues.js";
 
 const SummaryBuys = () => {
-  //const statistics = useSelector((state: State) => state.statisticsData);
   const { purchases, collections } = useSelector((state: State) => state);
   const statisticsData = getStatisticValues(collections, purchases);
 
