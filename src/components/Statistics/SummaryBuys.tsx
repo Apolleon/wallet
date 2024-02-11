@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import SubTitleItem from "./SubTitleItem.tsx";
 import SummaryItemList from "./SummaryItemList/SummaryItemList.tsx";
 import { getSummary } from "../helpers/statisticsPage/getSummary.ts";
 import styles from "./Statistics.module.css";
 import { useSelector } from "react-redux";
-import { State } from "../../types.ts";
+import { State } from "../../types/types.ts";
 import { getStatisticValues } from "../helpers/statisticsPage/getStatisticValues.js";
 
 const SummaryBuys = () => {
@@ -29,4 +29,4 @@ const SummaryBuys = () => {
   );
 };
 
-export default SummaryBuys;
+export default memo(SummaryBuys);

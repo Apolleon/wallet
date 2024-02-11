@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { CollectionItemType } from "../../../types";
+import { CollectionItemType } from "../../../types/types";
 
 interface CollectionFormProps {
   props: CollectionItemType | {};

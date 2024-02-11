@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "./NewData.module.css";
 import OptionsList from "../OptionsList.tsx";
-import { CollectionItemType } from "../../../types";
+import { CollectionItemType } from "../../../types/types.ts";
 
 interface SelectFieldProps {
   onChange: (t) => typeof t;

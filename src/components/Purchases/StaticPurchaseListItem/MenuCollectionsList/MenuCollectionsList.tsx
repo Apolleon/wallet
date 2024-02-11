@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import MenuCollectionItem from "./MenuCollectionItem.tsx";
 import styles from "../StaticPurchaseListItem.module.css";
 import { useSelector } from "react-redux";
-import { State } from "../../../../types.ts";
+import { State } from "../../../../types/types.ts";
 
 interface MenuCollectionsListProps {
   sortByCollection: (e: React.MouseEvent<Element, MouseEvent>) => void;

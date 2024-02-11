@@ -3,7 +3,11 @@ import editbtn from "../../../img/delete-icon.gif";
 import deletebtn from "../../../img/delete-icon.gif";
 import CollectionForm from "./CollectionForm.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { CollectionItemType, State, UserActions } from "../../../types.ts";
+import {
+  CollectionItemType,
+  State,
+  UserActions,
+} from "../../../types/types.ts";
 import FormHeader from "../FormHeader.tsx";
 
 const CollectionsList = () => {

@@ -1,4 +1,4 @@
-import { CollectionItemType, PurchaseItemType } from "./src/types";
+import { CollectionItemType, PurchaseItemType } from "./types.ts";
 
 export interface IElectronAPI {
   getAllStatistics: () => Promise<void>;

@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import SummaryItem from "./SummaryItem";
 import { useSelector } from "react-redux";
-import { State } from "../../../types";
+import { State } from "../../../types/types";
 import { getStatisticValues } from "../../helpers/statisticsPage/getStatisticValues";
 
 const SummaryItemList: FC = () => {
@@ -21,4 +21,4 @@ const SummaryItemList: FC = () => {
   );
 };
 
-export default SummaryItemList;
+export default memo(SummaryItemList);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import SubTitleItem from "../SubTitleItem.tsx";
 
 const SummaryItem = ({ item, name }) => {
@@ -11,4 +11,4 @@ const SummaryItem = ({ item, name }) => {
   );
 };
 
-export default SummaryItem;
+export default memo(SummaryItem);

@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import SummaryBuys from "./SummaryBuys.tsx";
 import { createMonthData } from "../helpers/statisticsPage/createMonthData";
 import { useSelector } from "react-redux";
-import { State } from "../../types";
+import { State } from "../../types/types.ts";
 import styles from "./Statistics.module.css";
 import VerticalBar from "../Diagrams.tsx";
 import Layout from "../Layout/Layout.tsx";
@@ -45,4 +45,4 @@ const Statistics: FC = () => {
     </Layout>
   );
 };
-export default Statistics;
+export default memo(Statistics);

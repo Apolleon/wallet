@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { PurchaseItemType, State } from "../../../types";
+import { PurchaseItemType, State } from "../../../types/types.ts";
 import { useSelector } from "react-redux";
 
 import arrow from "../../../img/list-arrow.gif";

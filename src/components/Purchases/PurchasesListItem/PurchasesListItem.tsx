@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { useDispatch } from "react-redux";
-import { PurchaseItemType, UserActions } from "../../../types.ts";
+import { PurchaseItemType, UserActions } from "../../../types/types.ts";
 import styles from "./PurchaseListItem.module.css";
 
 type backColor = "greyback" | undefined;
@@ -52,4 +52,4 @@ const PurchasesListItem: FC<ListItemProps> = ({ item, index }) => {
   );
 };
 
-export default PurchasesListItem;
+export default memo(PurchasesListItem);

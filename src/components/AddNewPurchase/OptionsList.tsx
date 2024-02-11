@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { CollectionItemType } from "../../types";
+import { CollectionItemType } from "../../types/types.ts";
 import OptionItem from "./OptionItem.tsx";
 
 interface OptionsListProps {

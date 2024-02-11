@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { ReduxActions, State } from "../types.ts";
+import { ReduxActions, State } from "../types/types.ts";
 
 const initialState: State = {
   purchases: [],

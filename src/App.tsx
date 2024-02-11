@@ -1,7 +1,7 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC } from "react";
 import "./index.css";
 import Statistics from "./components/Statistics/Statistics.tsx";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Diagrams from "./components/Diagrams.tsx";
 import PurchaseList from "./components/Purchases/PurchaseList.tsx";
 import Manager from "./components/Manager/Manager.jsx";

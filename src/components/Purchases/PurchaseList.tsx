@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FC, memo } from "react";
 import ListItem from "./PurchasesListItem/PurchasesListItem.tsx";
 import { useSelector, useDispatch } from "react-redux";
-import { PurchaseItemType, ReduxActions, State } from "../../types.ts";
+import { PurchaseItemType, ReduxActions, State } from "../../types/types.ts";
 import TopNavigation from "../TopNavigation/TopNavigation.tsx";
 import StaticPurchaseListItem from "./StaticPurchaseListItem/StaticPurchaseListItem.tsx";
 

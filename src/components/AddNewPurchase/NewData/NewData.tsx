@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { PurchaseItemType, State, UserActions } from "../../../types.ts";
+import { PurchaseItemType, State, UserActions } from "../../../types/types.ts";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./NewData.module.css";
 import InputField from "./InputField.tsx";
