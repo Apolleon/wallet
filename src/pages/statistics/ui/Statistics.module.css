@@ -1,0 +1,77 @@
+.statistic_item {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+  margin: 14px auto;
+  width: 100%;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.statistic_item:hover {
+  cursor: pointer;
+  box-shadow: 0 0 7px 4px white;
+}
+
+.summary {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 4px 5px;
+  margin: 30px 0;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.summary_column {
+  margin-right: 0;
+  padding-right: 10px;
+}
+
+.diagram {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.diagram_btn {
+  margin-top: 60px;
+  padding: 5px 20px;
+  color: white;
+  background: transparent;
+  font-weight: bold;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  border: 1px solid;
+  border-color: white;
+  border-radius: 0;
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  background-position: 0 0;
+  font-size: 20px;
+  width: max-content;
+}
+
+.diagram_btn:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 200, 200, 0.4),
+    rgba(255, 255, 255, 0.4),
+    rgba(125, 125, 125, 0.4)
+  );
+  transition: 0.2s linear;
+  background-position: 100% 100%;
+  box-shadow: 0 0 10px 2px white;
+  cursor: pointer;
+}

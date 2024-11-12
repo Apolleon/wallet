@@ -19,10 +19,12 @@ async function createWindow() {
     frame: false,
     movable: false,
     transparent: true,
+    icon: "../src/img/icon.gif",
   });
 
   loadingwindow.loadFile("../public/loading.html");
   loadingwindow.show();
+
   setTimeout(() => {
     const startUrl =
       process.env.ELECTRON_START_URL ||
@@ -33,7 +35,7 @@ async function createWindow() {
       });
     mainWindow = new BrowserWindow({
       width: 1100,
-      height: 790,
+      height: 890,
       webPreferences: {
         preload: path.join(__dirname, "preload.js"),
       },
