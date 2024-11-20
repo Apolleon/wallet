@@ -9,6 +9,7 @@ import { setPurchases } from "shared/lib/slices/purchaseSlice.ts";
 import { setCollections } from "shared/lib/slices/collectionSlice.ts";
 
 const PurchaseList: FC = () => {
+  ////////////////////
   const dispatch = useDispatch();
   const purchases: PurchaseItemType[] = useSelector((state: State) => state.purchases);
   const [filteredItems, setFilteredItems] = useState<PurchaseItemType[]>(purchases);
